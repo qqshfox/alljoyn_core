@@ -11,6 +11,7 @@ chat -
          This sample shows how to use AllJoyn's C++ API to discover and connect
          with other AllJoyn enabled devices.
 
-
-
-
+SampleDaemon -
+         This sample runs a Bundled AllJoyn daemon. It can be passed a name
+         via the command-line, that is quietly advertised, to be discovered
+         by thin-client applications (eg. apps running on Arduino Due)
