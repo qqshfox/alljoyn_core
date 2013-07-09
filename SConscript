@@ -67,7 +67,6 @@ env.VariantDir('$OBJDIR/alljoyn_android', 'alljoyn_android', duplicate = 0)
 env.Install('$OBJDIR', env.File('src/Status.xml'))
 env.Status('$OBJDIR/Status')
 core_headers = env.Install('$CPP_DISTDIR/inc/alljoyn', '$OBJDIR/Status.h')
-core_headers += env.Install('$CPP_DISTDIR/inc/alljoyn', env.Glob('inc/alljoyn/*.h'))
 if env['OS_GROUP'] == 'winrt':
     core_headers += env.Install('$CPP_DISTDIR/inc/alljoyn', '$OBJDIR/Status_CPP0x.h')
 
@@ -111,7 +110,7 @@ returnValue += daemon_obj
 
 # Test programs to have built-in bundled daemon or not
 if env['BD'] == 'on':
-    env.Prepend(LIBS = daemon_lib)
+    env.Prepend(LIBS = 'ajdaemon')
     env.Prepend(LIBS = daemon_obj)
     env['bdlib'] = ""
     env['bdobj'] = ""
