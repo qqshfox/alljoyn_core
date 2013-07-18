@@ -2002,8 +2002,15 @@ void BusAttachment::Internal::CallJoinedListeners(SessionPort sessionPort, Sessi
     sessionListenersLock.Lock(MUTEX_CONTEXT);
     SessionPortListenerMap::iterator it = sessionPortListeners.find(sessionPort);
     if (it != sessionPortListeners.end()) {
-        /* Add entry to sessionListeners */
-        if (sessionListeners.find(sessionId) == sessionListeners.end()) {
+        /*
+         * Add entry to sessionListeners if this is a client-side bus attachment.
+         * Daemon side busAttachments cannot use sessionListners because these busAttachments are the ones
+         * responsible for sending out the signals that trigger sessionListener calls. Adding an empty
+         * sessionListener entry for a daemon-side bus attachement would cause a memory leak since
+         * the sessionLost signal will never be received by such attachments
+         */
+        bool isDaemon = GetRouter().IsDaemon();
+        if (!isDaemon && (sessionListeners.find(sessionId) == sessionListeners.end())) {
             SessionListener* np = 0;
             sessionListeners.insert(pair<SessionId, ProtectedSessionListener>(sessionId, ProtectedSessionListener(np)));
         }

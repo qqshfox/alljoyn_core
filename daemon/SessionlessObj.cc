@@ -572,7 +572,7 @@ QStatus SessionlessObj::HandleFoundAdvertisedName(const char* name, TransportMas
             SessionOpts opts = sessionOpts;
             opts.transports = transport;
             pair<uint32_t, String>* ctx = new pair<uint32_t, String>(changeId, name);
-            status = bus.JoinSessionAsync(name, sessionPort, this, opts, this, reinterpret_cast<void*>(ctx));
+            status = bus.JoinSessionAsync(name, sessionPort, NULL, opts, this, reinterpret_cast<void*>(ctx));
             if (status == ER_OK) {
                 if (it == changeIdMap.end()) {
                     changeIdMap.insert(pair<String, ChangeIdEntry>(guid, ChangeIdEntry(name, transport, numeric_limits<uint32_t>::max(), true, 0)));
@@ -876,7 +876,7 @@ void SessionlessObj::JoinSessionCB(QStatus status, SessionId id, const SessionOp
             /* Retry JoinSession if retries aren't exhausted */
             if (cit->second.retries++ < MAX_JOINSESSION_RETRIES) {
                 pair<uint32_t, String>* ctx2 = new pair<uint32_t, String>(ctx1->first, advName);
-                QStatus tStatus = bus.JoinSessionAsync(advName.c_str(), sessionPort, this, opts, this, reinterpret_cast<void*>(ctx2));
+                QStatus tStatus = bus.JoinSessionAsync(advName.c_str(), sessionPort, NULL, opts, this, reinterpret_cast<void*>(ctx2));
                 if (tStatus == ER_OK) {
                     QCC_DbgPrintf(("Retrying joinsession failure (%s)", QCC_StatusText(status)));
                 } else {
