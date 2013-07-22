@@ -110,7 +110,11 @@ returnValue += daemon_obj
 
 # Test programs to have built-in bundled daemon or not
 if env['BD'] == 'on':
-    env.Prepend(LIBS = 'ajdaemon')
+    if env['OS_GROUP'] == 'winrt':
+        # WinRT needs the full path to the exact file.
+        env.Prepend(LIBS = daemon_lib)
+    else:
+        env.Prepend(LIBS = 'ajdaemon')
     env.Prepend(LIBS = daemon_obj)
     env['bdlib'] = ""
     env['bdobj'] = ""
