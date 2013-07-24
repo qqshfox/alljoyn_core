@@ -495,7 +495,7 @@ TEST_F(BusAttachmentTest, JoinSession) {
     status = otherBus.FindAdvertisedName("org.alljoyn.bus.BusAttachmentTest.advertise");
     EXPECT_EQ(ER_OK, status) << "  Actual Status: " << QCC_StatusText(status);
 
-    for (size_t i = 0; i < 200; ++i) {
+    for (size_t i = 0; i < 1000; ++i) {
         if (found) {
             break;
         }
@@ -504,7 +504,7 @@ TEST_F(BusAttachmentTest, JoinSession) {
 
     EXPECT_TRUE(found);
 
-    for (size_t i = 0; i < 200; ++i) {
+    for (size_t i = 0; i < 1000; ++i) {
         if (sessionAccepted && sessionJoined && otherBusSessionId) {
             break;
         }
