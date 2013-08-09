@@ -893,7 +893,7 @@ size_t IsAt::Deserialize(uint8_t const* buffer, uint32_t bufsize)
         QCC_DbgPrintf(("IsAt::Deserialize(): R6 flag %d", m_flagR6));
 
         m_flagU6 = (typeAndFlags & 0x1) != 0;
-        QCC_DbgPrintf(("IsAt::Deserialize(): F flag %d", m_flagU6));
+        QCC_DbgPrintf(("IsAt::Deserialize(): U6 flag %d", m_flagU6));
 
         //
         // The second octet is the count of bus names.
