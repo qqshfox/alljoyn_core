@@ -182,12 +182,12 @@ namespace ajn {
  *      0                   1                   2                   3
  *      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
  *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- *     |R U R U C G| M |     Count     |         TransportMask         |
- *     |4 4 6 6    |   |               |                               |
+ *     |U R U R C G| M |     Count     |         TransportMask         |
+ *     |6 6 4 4    |   |               |                               |
  *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
  *     |         R4 IPv4Address present if 'R4' bit is set             |
  *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- *     |  R4 Port if 'R4' bit is set   |  U4 Ipv4Address present if    |
+ *     |  R4 Port if 'R4' bit is set   |  U4 IPv4Address present if    |
  *     |-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
  *     |       'U4' bit is set         |  U4 Port if 'U4' bit is set   |
  *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -199,10 +199,10 @@ namespace ajn {
  *     |  R6 Port if 'R6' bit is set   |                               |
  *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
  *     |                                                               |
- *     |         R6 IPv6Address present if 'R6' bit is set             |
+ *     |         U6 IPv6Address present if 'U6' bit is set             |
  *     |                               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- *     |                               |                               |
- *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+                               |
+ *     |                               |  U6 Port if 'U6' bit is set   |
+ *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
  *     |                                                               |
  *     ~       Daemon GUID StringData present if 'G' bit is set        ~
  *     |                                                               |
